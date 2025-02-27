@@ -1,0 +1,77 @@
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    color: #ffffff;
+}
+
+#maze-container {
+    position: relative;
+    width: 483px;
+    height: 483px;
+    background-color: transparent;
+    box-shadow: 0px 0px 25px 10px rgb(255, 157, 0);
+}
+
+canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+}
+
+button {
+    position: absolute;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    font-family: 'Times New Roman';
+    color: white;
+    background: #ff9500;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.8);
+}
+
+#reset-button {
+    margin-bottom: 600px;
+    margin-left: 410px;
+}
+
+#start-button {
+    margin-bottom: 600px;
+    margin-right: 410px;
+}
+
+#border-color {
+    position: absolute;
+    margin-bottom: 600px;
+}
+
+#credits-button {
+    bottom: 20px;
+    right: 20px;
+    opacity: 0.3;
+    font-size: 10px;
+    background: none;
+    border: none;
+    color: white;
+    transition: opacity 0.3s ease;
+}
+
+button:hover {
+    transform: scale(1.1);
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.5);
+}
+
+#credits-button:hover {
+    opacity: 1;
+    cursor: pointer;
+}
