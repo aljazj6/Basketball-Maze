@@ -1,5 +1,5 @@
 # 🎮 Basketball-Maze
-Slika: ![alt text](img/maze.png)
+Slika: ![alt text](maze.png)
 
 ## 🛠 Orodja
 - [Visual Studio Code](https://code.visualstudio.com)
