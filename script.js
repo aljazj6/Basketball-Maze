@@ -7,6 +7,10 @@ document.addEventListener("DOMContentLoaded", function () {
     const ctx = solutionCanvas.getContext("2d");
     const mazeContainer = document.getElementById("maze-container");
 
+    // Set the initial color of the color picker to match the button color
+    const defaultColor = "#ffa500"; // Default color for buttons and color picker
+    borderColorInput.value = defaultColor; // Set the initial color picker value
+
     let basketballImg = new Image();
     basketballImg.src = "https://upload.wikimedia.org/wikipedia/commons/7/7a/Basketball.png";
     let imageLoaded = false;
@@ -54,41 +58,35 @@ document.addEventListener("DOMContentLoaded", function () {
     
     
     creditsButton.addEventListener("click", function (event) {
-        event.preventDefault(); // Prepreci premik strani
-        let selectedColor = borderColorInput.value;
+        event.preventDefault(); // Prevent page refresh
+        let selectedColor = borderColorInput.value; // Get the color from the input
         Swal.fire({
             title: "Credits",
             html: `<div style='text-align: left; font-size: 16px;font-family: "Times New Roman", serif !important; padding: 10px;'>
                     <p><strong>Dijak: </strong> <span style='color: ${selectedColor};'>Aljaz Jurjavcic</span></p>
                     <p><strong>Mentor: </strong> <span style='color: ${selectedColor};'>Bostjan Vouk</span></p>
                     <p><strong>Razred: </strong> <span style='color: ${selectedColor};'>4. Rb</span></p>
-                   </div>
-                   <style>
-            .custom-swal-button {
-                margin-top: -30px !important;
-                font-family: "Times New Roman", serif !important;
-                
-            }
-        </style>`,
+                   </div>`,
             icon: "info",
-            iconColor: selectedColor,
-            confirmButtonColor: selectedColor,
+            iconColor: selectedColor, // Change icon color to selected color
+            confirmButtonColor: selectedColor, // Change confirm button color
             confirmButtonText: "OK",
             background: "#222",
-            color: "#fff",
+            color: "#fff", // Text color stays the same (white)
             backdrop: false,
             customClass: {
                 popup: 'custom-swal-popup',
                 confirmButton: 'custom-swal-button'
             }
         });
-    }); 
+    });
+    
 
 
     let animationRunning = false;
     let currentIndex = 0;
     let progress = 0;
-    const speed = 0.05;
+    const speed = 2.7;
     let pathColor = "#ffa500";
 
     function drawPath() {
@@ -106,31 +104,54 @@ document.addEventListener("DOMContentLoaded", function () {
     
 
     function moveBall() {
-        if (!animationRunning || currentIndex >= path.length - 1) {
-            animationRunning = false;
-            return;
-        }
-
+        if (!animationRunning) return;
+    
         ctx.clearRect(0, 0, solutionCanvas.width, solutionCanvas.height);
-        drawPath();
-
+        
+        // Narišemo celotno prehojeno pot do trenutne točke
+        ctx.beginPath();
+        ctx.moveTo(path[0].x, path[0].y);
+        for (let i = 1; i <= currentIndex; i++) {
+            ctx.lineTo(path[i].x, path[i].y);
+        }
+        ctx.strokeStyle = pathColor;
+        ctx.lineWidth = 2.88;
+        ctx.stroke();
+    
         const start = path[currentIndex];
         const end = path[currentIndex + 1];
-
-        const x = start.x + (end.x - start.x) * progress;
-        const y = start.y + (end.y - start.y) * progress;
-
-        ctx.drawImage(basketballImg, x - 10, y - 10, 17, 17);
-
-        progress += speed;
-
+    
+        let dx = end.x - start.x;
+        let dy = end.y - start.y;
+        let segmentLength = Math.sqrt(dx * dx + dy * dy);
+        
+        let stepX = (dx / segmentLength) * speed;
+        let stepY = (dy / segmentLength) * speed;
+    
+        progress += speed / segmentLength;
+    
         if (progress >= 1) {
             progress = 0;
             currentIndex++;
         }
-
+    
+        if (currentIndex >= path.length - 1) {
+            animationRunning = false;
+            return;
+        }
+    
+        let x = start.x + dx * progress;
+        let y = start.y + dy * progress;
+    
+        ctx.lineTo(x, y);
+        ctx.stroke();
+    
+        ctx.drawImage(basketballImg, x - 10, y - 10, 17, 17);
+    
         requestAnimationFrame(moveBall);
     }
+
+
 
     function animateBounceToStart() {
         let startX = path[path.length - 1].x; // Začetek animacije na koncu labirinta
@@ -222,9 +243,16 @@ document.addEventListener("DOMContentLoaded", function () {
         let selectedColor = borderColorInput.value;
         pathColor = selectedColor;
         drawPath();
+        
+        // Spreminjanje barve gumbov
         startButton.style.background = selectedColor;
         resetButton.style.background = selectedColor;
+        
+        // Spreminjanje barve sence labirinta
         mazeContainer.style.boxShadow = `0px 0px 25px 10px ${selectedColor}`;
+        
+        // Spreminjanje barve naslova
+        document.querySelector("h1").style.color = selectedColor;
     });
 });
 

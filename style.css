@@ -3,19 +3,42 @@ body {
     margin: 0;
     padding: 0;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     height: 100vh;
-    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    background: linear-gradient(135deg, #16222A, #3A6073);
     color: #ffffff;
+    overflow: hidden;
+}
+
+#background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('img/bg.png') no-repeat center center/cover;
+    filter: brightness(0.7) contrast(1.2) blur(10px); /* Add blur(10px) */
+    z-index: -1;
+}
+
+
+h1 {
+    font-size: 36px;
+    font-weight: bold;
+    text-align: center;
+    color: #ffcc00;
+    text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.8);
+    margin-bottom: 20px;
 }
 
 #maze-container {
     position: relative;
     width: 483px;
     height: 483px;
-    background-color: transparent;
-    box-shadow: 0px 0px 25px 10px rgb(255, 157, 0);
+    background: rgba(0, 0, 0, 0.6);
+    box-shadow: 0px 0px 30px 12px rgba(255, 157, 0, 0.8);
 }
 
 canvas {
@@ -26,36 +49,31 @@ canvas {
 }
 
 button {
-    position: absolute;
-    padding: 10px 20px;
+    margin-top: 20px;
+    padding: 12px 24px;
     font-size: 16px;
     font-weight: bold;
     font-family: 'Times New Roman';
     color: white;
-    background: #ff9500;
+    background: linear-gradient(135deg, #ff9900, #ff5e00);
     border: none;
-    border-radius: 10px;
+    border-radius: 12px;
     cursor: pointer;
     transition: all 0.3s ease;
-    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.8);
+    box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.8);
 }
 
-#reset-button {
-    margin-bottom: 600px;
-    margin-left: 410px;
-}
-
-#start-button {
-    margin-bottom: 600px;
-    margin-right: 410px;
+button:hover {
+    transform: scale(1.1);
+    box-shadow: 6px 6px 18px rgba(0, 0, 0, 0.6);
 }
 
 #border-color {
-    position: absolute;
-    margin-bottom: 600px;
+    margin-top: 20px;
 }
 
 #credits-button {
+    position: absolute;
     bottom: 20px;
     right: 20px;
     opacity: 0.3;
@@ -64,11 +82,6 @@ button {
     border: none;
     color: white;
     transition: opacity 0.3s ease;
-}
-
-button:hover {
-    transform: scale(1.1);
-    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.5);
 }
 
 #credits-button:hover {

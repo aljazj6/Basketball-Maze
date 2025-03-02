@@ -3,13 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Labirint</title>
+    <title>Basketball Maze</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="icon" type="image/png" href="img/favicon.png">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
-<div id="maze-container">
+    <div id="background"></div>
+
+    <h1>🏀 Basketball Maze 🏀</h1>
+  <div id="maze-container">
     <svg id="maze" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="500" height="500">
       <g fill="none" stroke="#000000" stroke-width="2" stroke-linecap="square">
         <line x1="2" y1="2" x2="226" y2="2" />
@@ -435,9 +438,10 @@
     <canvas id="solution-canvas" width="500" height="500"></canvas>
     </div>
     <button id="start-button">Start</button>
-    <input type="color" id="border-color" value="#ffa500">
     <button id="reset-button">Reset</button>
+    <input type="color" id="border-color">
     <button id="credits-button"></button>
+
     <script src="script.js"></script>
 </body>
 </html>
