@@ -11,9 +11,6 @@ Slika: ![alt text](img/maze.png)
 - CSS
 - Java Script
 
-## 🚀Link
-Spletno stran si lahko ogledate s klikom na ta [gumb](https://voixy25.github.io/PacMazed).
-
 ## 📝 Urejanje
 Za urejanje spletne strani za lastno uporabo, preprosto spremenite HTML, CSS, JavaScript kodo. Ne pozabite vključiti svojih slik, podrobnosti in povezav. Spremenite lahko tudi barvno shemo, pisavo ali pa dodate svoje elemente. 
 
