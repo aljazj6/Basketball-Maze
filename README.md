@@ -6,6 +6,11 @@ Slika: ![alt text](img/maze.png)
 - [ChatGPT](https://chatgpt.com/)
 - [Github](https://github.com)
 
+## ⚡Programski jeziki
+- HTML
+- CSS
+- Java Script
+
 ## 🚀Link
 Spletno stran si lahko ogledate s klikom na ta [gumb](https://voixy25.github.io/PacMazed).
 
